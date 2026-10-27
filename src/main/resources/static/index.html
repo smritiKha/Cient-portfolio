@@ -9,14 +9,17 @@
 		<meta
 			name="description"
 			content="Roman Rai, chef de partie. A personal portfolio of culinary perspective, kitchen experience, and selected dishes." />
+		<script>
+			window.location.replace('/culinary_art_in_motion.html');
+		</script>
 		<title>Roman Rai | Chef de Partie</title>
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
 			href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap"
 			rel="stylesheet" />
-		<link rel="stylesheet" href="/css/site.css" />
-		<script src="/js/site.js" defer></script>
+		<link rel="stylesheet" href="css/site.css" />
+		<script src="js/site.js" defer></script>
 	</head>
 	<body>
 		<header class="site-header">
@@ -69,15 +72,13 @@
 					<div class="portrait-frame">
 						<img
 							id="chef-portrait"
-							src="/images/me.png"
+							src="images/me.png"
 							alt="Roman Rai in a professional kitchen"
 							fetchpriority="high" />
 					</div>
 					<figcaption>
 						<span>IN THE KITCHEN</span
-						><span id="portrait-caption"
-							>Roman Rai</span
-						>
+						><span id="portrait-caption">Roman Rai</span>
 					</figcaption>
 					<span class="portrait-index" aria-hidden="true"
 						>01 / RR</span
@@ -198,7 +199,7 @@
 				><span class="wordmark-mark">RR</span
 				><span id="footer-name">Roman Rai</span></a
 			><span>Cook with care. Work with purpose.</span
-			><a href="/admin/login.html">Admin login</a
+			><a id="admin-link" href="admin/login.html">Admin login</a
 			><span>© <span id="year"></span></span>
 		</footer>
 	</body>

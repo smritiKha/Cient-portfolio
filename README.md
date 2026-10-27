@@ -22,6 +22,8 @@ mvn spring-boot:run
 
 Run `npm install` before opening `culinary_art_in_motion.html` with VS Code Live Server. Three.js is served from `node_modules` on port 5500; the complete dynamic portfolio and admin API require the Spring Boot server above.
 
+The original design and features are also the destination for `dist/index.html`. To use that URL with Live Server, start Live Server from the project root (the folder containing this README), then open `http://127.0.0.1:5500/dist/index.html`. The saved entry page forwards to `culinary_art_in_motion.html` each time it is opened, including after Live Server is restarted.
+
 Never commit `.env` or share the admin password. For production, use HTTPS and keep `PORTFOLIO_DATA_DIR` on persistent storage. Portfolio content and uploaded images are stored under `data/` by default. The first launch creates starter profile data; add real venues, dates, contact details, and your own photography before publishing.
 
 ## Project layout

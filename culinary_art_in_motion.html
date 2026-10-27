@@ -32,20 +32,21 @@
 		<link
 			rel="stylesheet"
 			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-		<link
-			rel="stylesheet"
-			href="/css/culinary-overrides.css"
-			onerror="
-				this.onerror = null;
-				this.href =
-					'/src/main/resources/static/css/culinary-overrides.css';
-			" />
+		<script>
+			const overrideStylesheet = document.createElement('link');
+			overrideStylesheet.rel = 'stylesheet';
+			overrideStylesheet.href =
+				window.location.port === '5500'
+					? '/src/main/resources/static/css/culinary-overrides.css'
+					: '/css/culinary-overrides.css';
+			document.head.append(overrideStylesheet);
+		</script>
 		<!-- Three.js for 3D Studio & Globe simulation -->
 		<script
-			src="/webjars/three/0.127.0/build/three.min.js"
+			src="/node_modules/three/build/three.min.js"
 			onerror="
 				this.onerror = null;
-				this.src = '/node_modules/three/build/three.min.js';
+				this.src = '/webjars/three/0.127.0/build/three.min.js';
 			"></script>
 		<style>
 			body {
@@ -1313,6 +1314,21 @@
 
 			// LocalStorage Management
 			function getDishes() {
+				const savedDishes = localStorage.getItem('roman_rai_dishes');
+				if (savedDishes !== null) {
+					try {
+						const dishes = JSON.parse(savedDishes);
+						if (Array.isArray(dishes)) return dishes;
+						console.error(
+							'Saved portfolio dishes are not a valid list.',
+						);
+					} catch (error) {
+						console.error(
+							'Could not read saved portfolio dishes.',
+							error,
+						);
+					}
+				}
 				return portfolioData.dishes || [];
 			}
 
@@ -1329,6 +1345,7 @@
 					'roman_rai_dishes',
 					JSON.stringify(dishes),
 				);
+				portfolioData.dishes = dishes;
 			}
 
 			function resetDefaultData() {
@@ -1340,6 +1357,12 @@
 			function dishImageUrl(image) {
 				const staticImagePrefix =
 					'src/main/resources/static/images/';
+				if (
+					image?.startsWith('/uploads/') &&
+					window.location.port === '5500'
+				) {
+					return `/data${image}`;
+				}
 				if (
 					image?.startsWith('/images/') &&
 					(window.location.protocol === 'file:' ||
@@ -1358,7 +1381,11 @@
 			}
 
 			async function loadContactDetails() {
-				if (window.location.protocol === 'file:') return;
+				if (
+					window.location.protocol === 'file:' ||
+					window.location.port === '5500'
+				)
+					return;
 				try {
 					const response = await fetch('/api/portfolio', {
 						headers: { Accept: 'application/json' },
@@ -1919,13 +1946,14 @@
 				}
 			});
 		</script>
-		<script src="/js/culinary-portfolio.js"></script>
 		<script>
-			if (!window.romanPortfolioContentLoaded) {
-				document.write(
-					'<script src="/src/main/resources/static/js/culinary-portfolio.js"><\\/script>',
-				);
-			}
+			const portfolioScript = document.createElement('script');
+			portfolioScript.src =
+				window.location.port === '5500'
+					? '/src/main/resources/static/js/culinary-portfolio.js'
+					: '/js/culinary-portfolio.js';
+			portfolioScript.async = false;
+			document.body.append(portfolioScript);
 		</script>
 	</body>
 </html>

@@ -1,6 +1,13 @@
 /** @format */
 
 const api = (path) => fetch(path, { headers: { Accept: 'application/json' } });
+const isLivePreview = window.location.port === '5500';
+const assetUrl = (path) => {
+	if (isLivePreview && path?.startsWith('/images/'))
+		return `/src/main/resources/static${path}`;
+	if (isLivePreview && path?.startsWith('/uploads/')) return `/data${path}`;
+	return path || '';
+};
 const text = (element, value) => {
 	element.textContent = value || '';
 };
@@ -11,7 +18,7 @@ function addDish(dish, container, isSignatureDish) {
 	if (dish.image) {
 		const image = document.createElement('img');
 		image.className = 'dish-image';
-		image.src = dish.image;
+		image.src = assetUrl(dish.image);
 		image.style.objectFit =
 			dish.imageFit === 'contain' ? 'contain' : 'cover';
 		image.alt = dish.title
@@ -73,10 +80,17 @@ function addExperience(entry, container) {
 
 async function loadPortfolio() {
 	try {
-		const response = await api('/api/portfolio');
+		let response = await api(
+			isLivePreview ? '/data/portfolio.json' : '/api/portfolio',
+		);
+		if (!response.ok && !isLivePreview)
+			response = await api('/data/portfolio.json');
 		if (!response.ok)
 			throw new Error('Portfolio data is not available yet.');
 		const data = await response.json();
+		const adminLink = document.getElementById('admin-link');
+		if (isLivePreview)
+			adminLink.href = `http://${window.location.hostname}:8080/admin`;
 		const profile = data.profile || {};
 		const dishList = document.getElementById('dish-list');
 		dishList.dataset.signatureDishId = data.signatureDishId || '';
@@ -89,8 +103,9 @@ async function loadPortfolio() {
 		text(document.getElementById('about-copy'), profile.about);
 		text(document.getElementById('hero-location'), profile.location);
 		text(document.getElementById('contact-location'), profile.location);
-		document.getElementById('chef-portrait').src =
-			profile.portrait || '/images/chef-placeholder.jpg';
+		document.getElementById('chef-portrait').src = assetUrl(
+			profile.portrait || '/images/chef-placeholder.jpg',
+		);
 		document.getElementById('chef-portrait').alt =
 			`Chef portrait of ${profile.name || 'Roman Rai'}`;
 		const emailLink = document.getElementById('email-link');

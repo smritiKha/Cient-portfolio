@@ -88,30 +88,39 @@ primaryNavigation.addEventListener('click', (event) => {
 
 async function loadPortfolioContent() {
 	try {
-		const response = await fetch('/api/portfolio', {
-			headers: { Accept: 'application/json' },
-		});
+		let response;
+		if (window.location.port !== '5500') {
+			response = await fetch('/api/portfolio', {
+				headers: { Accept: 'application/json' },
+			});
+		}
+		if (!response?.ok) {
+			response = await fetch('/data/portfolio.json', {
+				headers: { Accept: 'application/json' },
+			});
+		}
 		if (!response.ok) throw new Error('Portfolio data unavailable');
 		const data = await response.json();
 		const profile = data.profile || {};
+		const dishes = data.dishes?.length
+			? data.dishes.map((dish) => ({
+					id: dish.id,
+					name: dish.title,
+					cuisine: dish.cuisine,
+					desc: dish.description,
+					img: dish.image,
+					imageFit: dish.imageFit,
+					sauce: dish.sauce,
+					protein: dish.protein,
+					herbs: dish.herbs,
+					garnish: dish.garnish,
+					texture: dish.texture,
+				}))
+			: defaultDishes;
 		portfolioData = {
 			signatureDishId: data.signatureDishId,
 			compositionDishId: data.compositionDishId,
-			dishes: data.dishesManaged
-				? data.dishes.map((dish) => ({
-						id: dish.id,
-						name: dish.title,
-						cuisine: dish.cuisine,
-						desc: dish.description,
-						img: dish.image,
-						imageFit: dish.imageFit,
-						sauce: dish.sauce,
-						protein: dish.protein,
-						herbs: dish.herbs,
-						garnish: dish.garnish,
-						texture: dish.texture,
-					}))
-				: defaultDishes,
+			dishes,
 		};
 		document.getElementById('profile-role-nav').textContent =
 			profile.role || 'Senior Chef de Partie';
@@ -146,7 +155,8 @@ async function loadPortfolioContent() {
 			headline.append(document.createElement('br'), accent);
 		}
 		const portrait = document.getElementById('chef-portrait');
-		if (profile.portrait) portrait.src = profile.portrait;
+		if (profile.portrait)
+			portrait.src = dishImageUrl(profile.portrait);
 		const isStockKitchenImage =
 			!profile.portrait ||
 			profile.portrait.includes('photo-1577219491135');
