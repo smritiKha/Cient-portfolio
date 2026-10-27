@@ -1,0 +1,51 @@
+<!-- @format -->
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#172821" />
+		<title>Admin sign in | Roman Rai</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap"
+			rel="stylesheet" />
+		<link rel="stylesheet" href="/admin/admin.css" />
+		<script src="/admin/login.js" defer></script>
+	</head>
+	<body class="login-body">
+		<div class="login-layout">
+			<main class="login-content">
+				<p class="admin-kicker">ADMINISTRATION</p>
+				<h2>Sign in</h2>
+				<p class="login-intro">
+					Sign in to manage your portfolio.
+				</p>
+				<form id="login-form" class="login-form">
+					<label for="username">Username</label>
+					<input
+						id="username"
+						name="username"
+						autocomplete="username"
+						required />
+					<label for="password">Password</label>
+					<input
+						id="password"
+						name="password"
+						type="password"
+						autocomplete="current-password"
+						required />
+					<button class="admin-button login-submit" type="submit">
+						Sign in <span aria-hidden="true">→</span>
+					</button>
+					<p
+						id="login-message"
+						class="form-message"
+						role="status"></p>
+				</form>
+				<a class="back-link" href="/">← Back to portfolio</a>
+			</main>
+		</div>
+	</body>
+</html>

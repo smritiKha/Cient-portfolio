@@ -1,0 +1,342 @@
+<!-- @format -->
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#172821" />
+		<title>Admin | Roman Rai</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap"
+			rel="stylesheet" />
+		<link rel="stylesheet" href="/admin/admin.css" />
+		<script src="/admin/admin.js" defer></script>
+	</head>
+	<body>
+		<header class="admin-header">
+			<a class="admin-brand" href="/"
+				><span>RR</span><span>ROMAN RAI · ADMIN</span></a
+			>
+			<nav class="admin-nav" aria-label="Admin navigation">
+				<a href="/#about">View portfolio</a
+				><button id="logout-button" type="button">Sign out</button>
+			</nav>
+		</header>
+		<main class="admin-main">
+			<p class="admin-kicker">Your portfolio, your story</p>
+			<h1>Manage the details.</h1>
+			<p class="admin-intro">
+				Keep the story specific and true to your experience. Changes are
+				saved on this server and appear on the public portfolio.
+			</p>
+			<p id="page-message" class="form-message" role="status"></p>
+
+			<section class="admin-section" aria-labelledby="profile-title">
+				<div class="section-head">
+					<div>
+						<p class="admin-kicker">01 · First impression</p>
+						<h2 id="profile-title">Profile & contact</h2>
+					</div>
+				</div>
+				<form id="profile-form" class="admin-form">
+					<div class="field">
+						<label for="profile-name">Name</label
+						><input
+							id="profile-name"
+							name="name"
+							required
+							maxlength="80" />
+					</div>
+					<div class="field">
+						<label for="profile-role">Role</label
+						><input
+							id="profile-role"
+							name="role"
+							required
+							maxlength="100" />
+					</div>
+					<div class="field full">
+						<label for="profile-headline">Headline</label
+						><input
+							id="profile-headline"
+							name="headline"
+							maxlength="120" />
+					</div>
+					<div class="field full">
+						<label for="profile-about">About me</label
+						><textarea
+							id="profile-about"
+							name="about"
+							maxlength="1200"></textarea>
+					</div>
+					<div class="field">
+						<label for="profile-email">Contact email</label
+						><input
+							id="profile-email"
+							name="email"
+							type="email"
+							maxlength="160" />
+					</div>
+					<div class="field">
+						<label for="profile-phone">Phone</label>
+						<input
+							id="profile-phone"
+							name="phone"
+							type="tel"
+							maxlength="40" />
+					</div>
+					<div class="field">
+						<label for="profile-location">Location</label
+						><input
+							id="profile-location"
+							name="location"
+							maxlength="120" />
+					</div>
+					<div class="field full">
+						<label for="profile-availability"
+							>Availability note</label
+						><input
+							id="profile-availability"
+							name="availability"
+							maxlength="140" />
+					</div>
+					<div class="field full">
+						<label for="profile-skills"
+							>Skills (separate with commas)</label
+						><input
+							id="profile-skills"
+							name="skills"
+							maxlength="500" />
+					</div>
+					<div class="field full">
+						<label for="profile-education"
+							>Education (one entry per line)</label
+						>
+						<textarea
+							id="profile-education"
+							name="education"
+							maxlength="800"
+							rows="3"></textarea>
+					</div>
+					<div class="field">
+						<label for="profile-languages"
+							>Languages (separate with commas)</label
+						>
+						<input
+							id="profile-languages"
+							name="languages"
+							maxlength="200" />
+					</div>
+					<div class="field">
+						<label for="profile-reference">References note</label>
+						<input
+							id="profile-reference"
+							name="referenceNote"
+							maxlength="160" />
+					</div>
+					<div class="field full">
+						<label for="profile-portrait">Chef portrait</label
+						><img
+							id="portrait-preview"
+							class="portrait-preview"
+							alt="Current chef portrait" /><input
+							id="profile-portrait"
+							name="portrait"
+								type="text"
+								inputmode="url"
+								placeholder="Upload a photo or paste an image URL" /><input
+							id="profile-file"
+							type="file"
+							accept="image/jpeg,image/png,image/webp" /><small
+							>Leave the current photo path unchanged when editing
+							other details. Upload or paste a URL only to replace
+							it. JPEG, PNG, or WebP, up to 8 MB.</small
+						>
+					</div>
+					<div class="field full">
+						<label for="profile-resume">CV / resume PDF</label>
+						<input
+							id="profile-resume"
+							name="resumeUrl"
+							type="text"
+							inputmode="url"
+							placeholder="Upload a PDF or paste its URL" />
+						<input
+							id="resume-file"
+							type="file"
+							accept="application/pdf" />
+					</div>
+					<div class="form-actions">
+						<button class="admin-button" type="submit">
+							Save profile <span aria-hidden="true">→</span>
+						</button>
+						<p
+							id="profile-message"
+							class="form-message"
+							role="status"></p>
+					</div>
+				</form>
+			</section>
+
+			<section class="admin-section" aria-labelledby="experience-title">
+				<div class="section-head">
+					<div>
+						<p class="admin-kicker">02 · Your path</p>
+						<h2 id="experience-title">Kitchen experience</h2>
+					</div>
+				</div>
+				<form id="experience-form" class="admin-form">
+					<input id="experience-id" type="hidden" />
+					<div class="field">
+						<label for="experience-venue">Venue</label
+						><input
+							id="experience-venue"
+							required
+							maxlength="120" />
+					</div>
+					<div class="field">
+						<label for="experience-role">Role</label
+						><input id="experience-role" required maxlength="100" />
+					</div>
+					<div class="field">
+						<label for="experience-location">Location</label
+						><input id="experience-location" maxlength="120" />
+					</div>
+					<div class="field">
+						<label for="experience-dates">Dates</label
+						><input
+							id="experience-dates"
+							placeholder="e.g. 2022–2024"
+							maxlength="80" />
+					</div>
+					<div class="field full">
+						<label for="experience-details"
+							>What I contributed</label
+						><textarea
+							id="experience-details"
+							maxlength="500"></textarea>
+					</div>
+					<div class="form-actions">
+						<button class="admin-button" type="submit">
+							Save experience
+							<span aria-hidden="true">→</span></button
+						><button
+							id="experience-cancel"
+							class="quiet-button"
+							type="button"
+							hidden>
+							Cancel edit
+						</button>
+						<p
+							id="experience-message"
+							class="form-message"
+							role="status"></p>
+					</div>
+				</form>
+				<div
+					id="experience-admin-list"
+					class="item-list"
+					aria-live="polite"></div>
+			</section>
+
+			<section class="admin-section" aria-labelledby="dishes-title">
+				<div class="section-head">
+					<div>
+						<p class="admin-kicker">03 · On the plate</p>
+						<h2 id="dishes-title">Selected dishes</h2>
+						<p class="section-help">
+							Add or edit dishes, then choose which one is featured
+							as your signature and which appears in “Elements on
+							the Plate.”
+						</p>
+					</div>
+				</div>
+				<div
+					id="dish-admin-list"
+					class="item-list"
+					aria-live="polite"></div>
+				<form id="dish-form" class="admin-form">
+					<input id="dish-id" type="hidden" />
+					<p id="dish-form-heading" class="dish-form-heading full">
+						Add a dish
+					</p>
+					<div class="field">
+						<label for="dish-title">Dish name</label
+						><input id="dish-title" required maxlength="120" />
+					</div>
+					<div class="field">
+						<label for="dish-cuisine">Cuisine / style</label
+						><input id="dish-cuisine" maxlength="100" />
+					</div>
+					<div class="field full">
+						<label for="dish-description">Description</label
+						><textarea
+							id="dish-description"
+							maxlength="500"></textarea>
+					</div>
+					<div class="field full">
+						<label for="dish-image">Dish photo</label
+						><input
+							id="dish-image"
+							type="text"
+							inputmode="url"
+							required
+							maxlength="500"
+							aria-describedby="dish-image-help"
+							placeholder="Paste an image URL or upload a photo" /><input
+							id="dish-file"
+							type="file"
+							accept="image/jpeg,image/png,image/webp" />
+						<small id="dish-image-help"
+							>Choose one: paste an image URL or upload a JPEG, PNG, or WebP photo. Uploading fills the photo field for you.</small
+						>
+					</div>
+					<div class="field">
+						<label for="dish-image-fit">Photo display</label>
+						<select id="dish-image-fit">
+							<option value="cover">Fill frame (may crop edges)</option>
+							<option value="contain">Show full photo</option>
+						</select>
+					</div>
+					<div class="field">
+						<label for="dish-sauce">Sauce / seasoning</label>
+						<input id="dish-sauce" maxlength="140" />
+					</div>
+					<div class="field">
+						<label for="dish-protein">Main ingredient</label>
+						<input id="dish-protein" maxlength="140" />
+					</div>
+					<div class="field">
+						<label for="dish-herbs">Herbs</label>
+						<input id="dish-herbs" maxlength="140" />
+					</div>
+					<div class="field">
+						<label for="dish-garnish">Garnish</label>
+						<input id="dish-garnish" maxlength="140" />
+					</div>
+					<div class="field">
+						<label for="dish-texture">Texture</label>
+						<input id="dish-texture" maxlength="140" />
+					</div>
+					<div class="form-actions">
+						<button class="admin-button" type="submit">
+							Save dish <span aria-hidden="true">→</span></button
+						><button
+							id="dish-cancel"
+							class="quiet-button"
+							type="button"
+							hidden>
+							Cancel edit
+						</button>
+						<p
+							id="dish-message"
+							class="form-message"
+							role="status"></p>
+					</div>
+				</form>
+			</section>
+		</main>
+	</body>
+</html>
