@@ -272,6 +272,23 @@
 
 				</div>
 
+                <!-- Chef portrait: keeps the original dish gallery and Three.js background intact -->
+                <div class="lg:col-span-6 relative flex items-center justify-center">
+                    <div class="relative w-full max-w-lg mx-auto">
+                        <div class="absolute -inset-5 rounded-[2.5rem] border border-gold/15 rotate-3 pointer-events-none" aria-hidden="true"></div>
+                        <div class="absolute -inset-2 rounded-[2rem] bg-gold/10 blur-3xl pointer-events-none" aria-hidden="true"></div>
+                        <div class="relative aspect-[4/5] max-h-[620px] overflow-hidden rounded-3xl border border-gold/20 bg-card shadow-2xl">
+                            <img id="hero-chef-portrait" src="/images/me.png" alt="Roman Rai, chef" fetchpriority="high" decoding="async" class="h-full w-full object-cover object-center transition-transform duration-700 hover:scale-[1.025]" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/10 pointer-events-none"></div>
+                            <div class="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
+                                <span class="block text-[10px] sm:text-xs uppercase tracking-[0.3em] text-gold mb-2">The chef behind the craft</span>
+                                <p class="font-serif text-2xl sm:text-3xl text-white">Roman Rai</p>
+                                <p class="text-xs uppercase tracking-[0.18em] text-gray-300 mt-2">Senior Chef de Partie</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
 				<!-- Hero Floating Dish Visual Card -->
 				<div id="featured-dish" hidden class="lg:col-span-6 flex justify-center relative">
 					<div
