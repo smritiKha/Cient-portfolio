@@ -163,6 +163,11 @@ async function loadPortfolioContent() {
 		portrait.alt = isStockKitchenImage
 			? 'Chef working in a professional kitchen'
 			: `Portrait of ${profile.name || 'Roman Rai'}`;
+        const heroPortrait = document.getElementById('hero-chef-portrait');
+        if (heroPortrait) {
+            heroPortrait.src = portrait.src;
+            heroPortrait.alt = portrait.alt;
+        }
 		const portraitCaption = document.getElementById('portrait-caption');
 		if (portraitCaption)
 			portraitCaption.textContent = isStockKitchenImage
