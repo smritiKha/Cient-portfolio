@@ -422,7 +422,6 @@
 		<!-- 3D DISH GALLERY SECTION -->
 		<section
 			id="gallery"
-			hidden
 			class="py-28 relative bg-surface/50 border-t border-b border-white/5">
 			<div class="max-w-7xl mx-auto px-6">
 				<div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
@@ -447,7 +446,6 @@
 		<!-- INGREDIENT EXPLOSION SECTION -->
 		<section
 			id="explosion"
-			hidden
 			class="py-28 bg-surface border-t border-b border-white/5 relative">
 			<div class="max-w-7xl mx-auto px-6">
 				<div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
@@ -1447,7 +1445,7 @@
 				const grid = document.getElementById('dish-gallery-grid');
 				grid.innerHTML = '';
 				const hasDishes = dishes.length > 0;
-				document.getElementById('featured-dish').hidden = !hasDishes;
+				document.getElementById('featured-dish').hidden = true;
 				document.getElementById('gallery').hidden = !hasDishes;
 				document.getElementById('explosion').hidden = !hasDishes;
 
@@ -1581,10 +1579,10 @@
 			function updateCompositionDish() {
 				const dishes = getDishes();
 				const selectedIndex = dishes.findIndex(
-					(dish) => dish.id === portfolioData.compositionDishId,
-				);
-				const currentDish =
-					selectedIndex >= 0 ? dishes[selectedIndex] : dishes[1] || dishes[0];
+                    (dish) => /tempura.*sushi|sushi.*tempura/i.test(dish.name || ''),
+                );
+                const currentDish =
+                    selectedIndex >= 0 ? dishes[selectedIndex] : dishes[1] || dishes[0];
 				if (!currentDish) return false;
 
 				document.getElementById('explosion-img').src = dishImageUrl(
