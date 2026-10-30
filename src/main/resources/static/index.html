@@ -5,7 +5,14 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Culinary Art in Motion — Roman Rai</title>
+		<title>Roman Rai | Culinary Portfolio</title>
+        <meta name="description" content="Explore Roman Rai's culinary portfolio, professional kitchen experience, signature dishes, and approach to Japanese, Nikkei and contemporary cuisine." />
+        <link rel="canonical" href="https://romanrai.onrender.com/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Roman Rai | Culinary Portfolio" />
+        <meta property="og:description" content="Culinary experience, signature dishes and a thoughtful approach to cooking." />
+        <meta property="og:url" content="https://romanrai.onrender.com/" />
+        <meta name="theme-color" content="#0a0a0a" />
 		<script src="https://cdn.tailwindcss.com"></script>
 		<script>
 			tailwind.config = {
@@ -274,7 +281,7 @@
 						<!-- Dish Image -->
 						<img
 							id="hero-dish-img"
-							src="src/main/resources/static/images/sushi_boat.png"
+							src="/images/sushi_boat.png"
 							alt="Signature Sushi Boat with assorted sushi rolls"
 							class="absolute inset-0 w-full h-full object-contain bg-black/40" />
 
@@ -469,7 +476,7 @@
 						class="w-64 h-64 sm:w-80 sm:h-80 rounded-full border-2 border-gold/40 p-3 bg-card shadow-2xl flex items-center justify-center relative z-20 transition-all duration-700 overflow-hidden cursor-pointer">
 						<img
 							id="explosion-img"
-							src="src/main/resources/static/images/volcano-sushi.png"
+							src="/images/volcano-sushi.png"
 							alt="Volcano Sushi"
 							class="w-full h-full object-contain rounded-full" />
 						<div
@@ -619,7 +626,7 @@
 						class="relative rounded-3xl overflow-hidden glass-panel p-2 shadow-2xl">
 						<img
 							id="chef-portrait"
-							src="src/main/resources/static/images/me.png"
+							src="/images/me.png"
 							alt="Roman Rai in a professional kitchen"
 							class="w-full max-w-[36rem] aspect-square mx-auto object-cover object-[center_30%] rounded-2xl filter grayscale hover:grayscale-0 transition-all duration-700" />
 						<div
@@ -1849,7 +1856,7 @@
 							container.clientWidth,
 							container.clientHeight,
 						);
-						renderer.setPixelRatio(window.devicePixelRatio);
+						renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.75));
 						container.appendChild(renderer.domElement);
 
 						// Add subtle floating 3D wireframe rings & particles representing culinary art
