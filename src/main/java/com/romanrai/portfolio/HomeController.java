@@ -10,6 +10,11 @@ public class HomeController {
         return "forward:/index.html";
     }
 
+    @GetMapping("/culinary_art_in_motion.html")
+    public String legacyPortfolioUrl() {
+        return "redirect:/";
+    }
+
     @GetMapping("/admin")
     public String admin() {
         return "redirect:/admin/login.html";
