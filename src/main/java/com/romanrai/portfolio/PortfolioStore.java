@@ -260,8 +260,6 @@ public class PortfolioStore {
                 "Kept essential ingredients ready for daily service, followed direction from the Executive and Sous Chefs, and monitored supply levels."),
             experience("labarra-2023", "LaBarra Nikkei Modern Japanese Restaurant", "Sushi Chef / Team Leader", "UAE", "2023–2025",
                 "Prepared sushi and other menu items to restaurant standards. Managed the assigned station, maintained presentation and consistency, and coordinated with the team during service."),
-            experience("noon-2025", "Noon Warehouse", "Assistant Supervisor", "UAE", "Jun 2025–Oct 2025",
-                "Managed daily inventory operations, receiving, inspecting, and recording incoming stock while maintaining accurate inventory records."),
             experience("taisuke-2025", "Taisuke Restaurant", "Chef de Partie / Team Leader", "UAE", "Nov 2025–Feb 2026",
                 "Maintained food quality, hygiene, and consistency during service. Supported menu development, portion control, waste reduction, and service for staff and guests."),
             experience("hudson-2026", "Hudson & Rye", "Senior Chef de Partie", "UAE", "Jun 2026–Present",
