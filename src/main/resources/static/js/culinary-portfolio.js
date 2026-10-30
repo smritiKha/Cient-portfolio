@@ -154,25 +154,14 @@ async function loadPortfolioContent() {
 			accent.textContent = headlineParts[1];
 			headline.append(document.createElement('br'), accent);
 		}
-		const portrait = document.getElementById('chef-portrait');
-		if (profile.portrait)
-			portrait.src = dishImageUrl(profile.portrait);
-		const isStockKitchenImage =
-			!profile.portrait ||
-			profile.portrait.includes('photo-1577219491135');
-		portrait.alt = isStockKitchenImage
-			? 'Chef working in a professional kitchen'
-			: `Portrait of ${profile.name || 'Roman Rai'}`;
         const heroPortrait = document.getElementById('hero-chef-portrait');
         if (heroPortrait) {
-            heroPortrait.src = portrait.src;
-            heroPortrait.alt = portrait.alt;
+            if (profile.portrait) heroPortrait.src = dishImageUrl(profile.portrait);
+            const isStockKitchenImage = !profile.portrait || profile.portrait.includes('photo-1577219491135');
+            heroPortrait.alt = isStockKitchenImage
+                ? 'Chef working in a professional kitchen'
+                : `Portrait of ${profile.name || 'Roman Rai'}`;
         }
-		const portraitCaption = document.getElementById('portrait-caption');
-		if (portraitCaption)
-			portraitCaption.textContent = isStockKitchenImage
-				? 'In the kitchen · service and craft'
-				: 'Roman Rai';
 		const emailLink = document.getElementById('contact-email');
 		const email = profile.email || 'theromanrai@gmail.com';
 		emailLink.href = `mailto:${encodeURIComponent(email)}?subject=${encodeURIComponent('Kitchen opportunity')}`;
