@@ -287,9 +287,9 @@
                 </div>
 
 				<!-- Hero Floating Dish Visual Card -->
-				<div id="featured-dish" hidden class="lg:col-span-6 flex justify-center relative">
+				<div id="featured-dish" class="lg:col-span-12 flex justify-center relative mt-4">
 					<div
-						class="relative w-full max-w-2xl aspect-[2/1] rounded-3xl glass-panel flex flex-col items-center justify-center shadow-2xl overflow-hidden group animate-float">
+						class="relative w-full max-w-3xl aspect-[2/1] rounded-3xl glass-panel flex flex-col items-center justify-center shadow-2xl overflow-hidden group animate-float">
 						<div
 							class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent z-10"></div>
 						<!-- Dish Image -->
@@ -319,7 +319,7 @@
 							</div>
 							<button
 								id="hero-dish-inspect"
-								onclick="openDishModal(0)"
+								onclick="openDishModal(getSignatureDishIndex())"
 								class="w-12 h-12 rounded-full bg-gold text-black flex items-center justify-center hover:bg-white transition-colors shadow-lg">
 								<i class="fa-solid fa-arrow-right"></i>
 							</button>
@@ -1429,7 +1429,7 @@
 				const grid = document.getElementById('dish-gallery-grid');
 				grid.innerHTML = '';
 				const hasDishes = dishes.length > 0;
-				document.getElementById('featured-dish').hidden = true;
+				document.getElementById('featured-dish').hidden = !hasDishes;
 				document.getElementById('gallery').hidden = !hasDishes;
 				document.getElementById('explosion').hidden = !hasDishes;
 
