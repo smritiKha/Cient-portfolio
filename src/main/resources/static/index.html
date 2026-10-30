@@ -457,21 +457,9 @@
 						THE ELEMENTS ON THE PLATE
 					</h2>
 					<p class="text-gray-400 text-sm">
-						Explore the elements of a dish, from its sauce and main
+						Tap or click the plate to reveal the elements of a dish, from its sauce and main
 						ingredient to herbs, garnish, and texture.
 					</p>
-					<button
-						id="explosion-toggle"
-						aria-expanded="false"
-						onclick="triggerExplosion()"
-						class="mt-4 px-8 py-3 bg-gold text-black font-semibold uppercase text-xs tracking-widest rounded-full hover:bg-goldLight transition-all shadow-lg shadow-gold/20">
-						<i
-							class="fa-solid fa-wand-magic-sparkles mr-2"
-							aria-hidden="true"></i>
-						<span id="explosion-toggle-label"
-							>Show ingredient layers</span
-						>
-					</button>
 				</div>
 
 				<!-- Exploded Layers Visualization Container -->
@@ -1623,29 +1611,22 @@
 			}
 
 			function handleExplosionPlateClick() {
-				if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-					showExplosionLayers();
-					return;
-				}
-				triggerExplosion();
-			}
+                triggerExplosion();
+            }
 
 			function setExplosionLayersVisible(isExploded) {
 				if (!updateCompositionDish()) return;
 
 				const plate = document.getElementById('explosion-plate');
 				const container = document.getElementById('explosion-container');
-				const explosionToggle = document.getElementById('explosion-toggle');
 
 				container.classList.toggle('is-exploded', isExploded);
-				explosionToggle.setAttribute('aria-expanded', String(isExploded));
 				plate.setAttribute('aria-expanded', String(isExploded));
 				plate.setAttribute(
 					'aria-label',
 					`${isExploded ? 'Hide' : 'Show'} ingredient layers for ${document.getElementById('explosion-dish-name').textContent}`,
 				);
-				document.getElementById('explosion-toggle-label').textContent =
-					isExploded ? 'Hide ingredient layers' : 'Show ingredient layers';
+
 				document
 					.querySelectorAll('.explosion-layer')
 					.forEach((layer) => {
@@ -1664,15 +1645,6 @@
 					triggerExplosion();
 				}
 			}
-
-			const explosionPlate = document.getElementById('explosion-plate');
-			explosionPlate.addEventListener('pointerenter', (event) => {
-				if (event.pointerType !== 'touch') showExplosionLayers();
-			});
-			explosionPlate.addEventListener('pointerleave', (event) => {
-				if (event.pointerType !== 'touch')
-					setExplosionLayersVisible(false);
-			});
 
 			// Dish Modal Detail
 			function openDishModal(index) {
