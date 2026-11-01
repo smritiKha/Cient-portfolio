@@ -85,7 +85,8 @@ public class PortfolioStore {
         if (profile.role == null || profile.role.isBlank() || "Chef de Partie".equals(profile.role)) profile.role = defaults.role;
         if (profile.headline == null || profile.headline.isBlank() || "I cook with intention.".equals(profile.headline)
                 || "Culinary Art | In Motion".equals(profile.headline)) profile.headline = defaults.headline;
-        if (profile.about == null || profile.about.isBlank() || previousAbout.equals(profile.about)) profile.about = defaults.about;
+        if (profile.about == null || profile.about.isBlank() || previousAbout.equals(profile.about)
+                || profile.about.contains("professional kitchens in India and the UAE")) profile.about = defaults.about;
         if (profile.email == null || profile.email.isBlank()) profile.email = defaults.email;
         if (profile.phone == null || profile.phone.isBlank()) profile.phone = defaults.phone;
         if (profile.location == null || profile.location.isBlank()) profile.location = defaults.location;
