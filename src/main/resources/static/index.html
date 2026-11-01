@@ -419,10 +419,10 @@
 				<div class="text-center max-w-2xl mx-auto mb-16 space-y-4">
 					<span
 						class="text-xs uppercase tracking-widest text-gold font-medium"
-						>Selected work</span
+						>Culinary gallery</span
 					>
 					<h2 class="text-3xl sm:text-5xl font-serif font-bold">
-						SIGNATURE DISHES
+						A SELECTION OF MY WORK
 					</h2>
 				</div>
 
@@ -798,9 +798,9 @@
 				</a>
 				<a
 					id="cv-link"
-					href="/cv"
+					href="/cv/download"
 					class="inline-flex items-center gap-3 px-7 py-3 border border-gold/40 text-gold text-xs uppercase tracking-widest font-semibold rounded-full hover:border-gold"
-					>Download CV</a
+					 download="Roman_Rai_CV.pdf">Download CV</a
 				>
 				<p id="contact-location" class="text-xs text-gray-500">Burjuman, Dubai, UAE</p>
 			</div>
@@ -1328,7 +1328,7 @@
 			function getSignatureDishIndex() {
 				const dishes = getDishes();
 				const selectedIndex = dishes.findIndex(
-					(dish) => dish.id === portfolioData.signatureDishId,
+					(dish) => /sushi\s*boat/i.test(dish.name || ''),
 				);
 				return selectedIndex >= 0 ? selectedIndex : 0;
 			}
