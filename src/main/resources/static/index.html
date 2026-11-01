@@ -147,7 +147,55 @@
 			}
 		</style>
 	<style>@media(max-width:767px){.explosion-layer{max-width:44vw}.explosion-layer .glass-panel{padding:8px 10px;font-size:11px}#explosion-container{min-height:370px}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}}</style>
-	</head>
+	
+		<script>
+			// Single navigation controller: Home always displays the hero and clears stale section URLs.
+			(function () {
+				if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+				const sections = new Set(['about','experience','gallery','explosion','skills','credentials','contact']);
+				const isHome = () => location.pathname === '/' || location.pathname === '/index.html';
+				const cleanPath = () => '/' + location.search;
+				function goHome() {
+					history.replaceState(null, '', cleanPath());
+					const hero = document.getElementById('hero');
+					if (hero) hero.scrollIntoView({behavior:'instant',block:'start'});
+					window.scrollTo({top:0,left:0,behavior:'instant'});
+				}
+				function goSection(id) {
+					const el = document.getElementById(id);
+					if (!el) return;
+					history.replaceState(null, '', cleanPath());
+					el.scrollIntoView({behavior:'smooth',block:'start'});
+				}
+				document.addEventListener('click', function (event) {
+					if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+					const a = event.target.closest('a[href]');
+					if (!a || !isHome()) return;
+					const href = a.getAttribute('href');
+					if (href === '/' || href === '#hero' || href === '/#hero') {
+						event.preventDefault(); event.stopImmediatePropagation(); goHome(); return;
+					}
+					if (href && href.charAt(0) === '#' && sections.has(href.slice(1))) {
+						event.preventDefault(); event.stopImmediatePropagation(); goSection(href.slice(1));
+					}
+				}, true);
+				// Support old shared #section URLs, then remove the fragment.
+				window.addEventListener('DOMContentLoaded', function () {
+					const id = location.hash.slice(1);
+					if (id === 'hero') goHome();
+					else if (sections.has(id)) {
+						const el = document.getElementById(id);
+						if (el) el.scrollIntoView({behavior:'instant',block:'start'});
+						history.replaceState(null,'',cleanPath());
+					}
+				});
+				// Prevent browsers restoring the Experience scroll position on a fresh homepage visit.
+				window.addEventListener('pageshow', function (event) {
+					if (event.persisted && !location.hash && isHome()) goHome();
+				});
+			})();
+		</script>
+</head>
 	<body
 		class="bg-obsidian text-gray-100 antialiased selection:bg-gold selection:text-black">
 		<!-- Navigation Bar -->
@@ -1794,44 +1842,5 @@
 			document.body.append(portfolioScript);
 		</script>
 	
-		<script>
-			// Keep section navigation smooth without leaving stale #section URLs.
-			(function () {
-				const sectionIds = new Set(['hero', 'about', 'experience', 'gallery', 'explosion', 'skills', 'credentials', 'contact']);
-				function cleanUrl() {
-					const url = new URL(window.location.href);
-					url.hash = '';
-					url.searchParams.delete('utm_source');
-					return url.pathname + url.search;
-				}
-				document.addEventListener('click', function (event) {
-					const link = event.target.closest('a[href]');
-					if (!link || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-					const target = link.getAttribute('href');
-					if (target === '/' && (window.location.pathname === '/' || window.location.pathname === '/index.html')) {
-						event.preventDefault();
-						window.history.replaceState(null, '', '/');
-						window.scrollTo({ top: 0, behavior: 'smooth' });
-						return;
-					}
-					if (!target || !target.startsWith('#')) return;
-					const id = target.slice(1);
-					if (!sectionIds.has(id)) return;
-					const section = document.getElementById(id);
-					if (!section) return;
-					event.preventDefault();
-						window.history.replaceState(null, '', cleanUrl());
-						section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-				});
-				// A copied legacy section link should still land at its section once.
-				window.addEventListener('load', function () {
-					const id = decodeURIComponent(window.location.hash.slice(1));
-					if (!sectionIds.has(id)) return;
-					const section = document.getElementById(id);
-					if (section) section.scrollIntoView({ block: 'start' });
-					window.history.replaceState(null, '', cleanUrl());
-				});
-			})();
-		</script>
 </body>
 </html>
