@@ -175,8 +175,8 @@ async function loadPortfolioContent() {
 			document.getElementById('contact-phone-text').textContent = phone;
 		}
 		const cvLink = document.getElementById('cv-link');
-		cvLink.href = '/cv/download';
-		cvLink.setAttribute('download', 'Roman_Rai_CV.pdf');
+		cvLink.href = '/cv';
+		cvLink.removeAttribute('download');
 		cvLink.classList.remove('hidden');
 		cvLink.classList.add('inline-flex');
 		document.getElementById('contact-location').textContent =
