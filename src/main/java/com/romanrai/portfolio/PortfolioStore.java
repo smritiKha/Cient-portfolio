@@ -256,7 +256,7 @@ public class PortfolioStore {
 
         private List<PortfolioData.Experience> starterExperience() {
         return List.of(
-            experience("mamagato-2021", "Mamagato", "Demi CDP", "Siliguri, India", "2021–2022",
+            experience("mamagato-2021", "Mamagato", "Demi CDP", "Casual Dining & Five-Star Hotel", "2021–2022",
                 "Kept essential ingredients ready for daily service, followed direction from the Executive and Sous Chefs, and monitored supply levels."),
             experience("labarra-2023", "LaBarra Nikkei Modern Japanese Restaurant", "Sushi Chef / Team Leader", "UAE", "2023–2025",
                 "Prepared sushi and other menu items to restaurant standards. Managed the assigned station, maintained presentation and consistency, and coordinated with the team during service."),
