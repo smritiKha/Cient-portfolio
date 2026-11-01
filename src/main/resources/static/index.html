@@ -156,7 +156,7 @@
 			id="navbar">
 			<div
 				class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-				<a href="#hero" class="flex items-center space-x-3 group">
+				<a href="/" class="flex items-center space-x-3 group">
 					<div
 						class="w-10 h-10 rounded-full border border-gold/50 flex items-center justify-center bg-card group-hover:border-gold transition-colors">
 						<i class="fa-solid fa-utensils text-gold text-sm"></i>
@@ -177,7 +177,7 @@
 				<nav
 					id="primary-navigation"
 					class="hidden lg:flex items-center space-x-8 text-sm font-medium tracking-wide">
-					<a href="#hero" class="hover:text-gold transition-colors"
+					<a href="/" class="hover:text-gold transition-colors"
 						>Home</a
 					>
 					<a href="#about" class="hover:text-gold transition-colors"
@@ -1793,5 +1793,45 @@
 			portfolioScript.async = false;
 			document.body.append(portfolioScript);
 		</script>
-	</body>
+	
+		<script>
+			// Keep section navigation smooth without leaving stale #section URLs.
+			(function () {
+				const sectionIds = new Set(['hero', 'about', 'experience', 'gallery', 'explosion', 'skills', 'credentials', 'contact']);
+				function cleanUrl() {
+					const url = new URL(window.location.href);
+					url.hash = '';
+					url.searchParams.delete('utm_source');
+					return url.pathname + url.search;
+				}
+				document.addEventListener('click', function (event) {
+					const link = event.target.closest('a[href]');
+					if (!link || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+					const target = link.getAttribute('href');
+					if (target === '/' && (window.location.pathname === '/' || window.location.pathname === '/index.html')) {
+						event.preventDefault();
+						window.history.replaceState(null, '', '/');
+						window.scrollTo({ top: 0, behavior: 'smooth' });
+						return;
+					}
+					if (!target || !target.startsWith('#')) return;
+					const id = target.slice(1);
+					if (!sectionIds.has(id)) return;
+					const section = document.getElementById(id);
+					if (!section) return;
+					event.preventDefault();
+						window.history.replaceState(null, '', cleanUrl());
+						section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+				});
+				// A copied legacy section link should still land at its section once.
+				window.addEventListener('load', function () {
+					const id = decodeURIComponent(window.location.hash.slice(1));
+					if (!sectionIds.has(id)) return;
+					const section = document.getElementById(id);
+					if (section) section.scrollIntoView({ block: 'start' });
+					window.history.replaceState(null, '', cleanUrl());
+				});
+			})();
+		</script>
+</body>
 </html>
