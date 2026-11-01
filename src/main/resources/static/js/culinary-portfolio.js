@@ -176,7 +176,8 @@ async function loadPortfolioContent() {
 		}
 		const cvLink = document.getElementById('cv-link');
 		if (profile.resumeUrl) {
-			cvLink.href = profile.resumeUrl;
+			cvLink.href = '/Roman_Rai_CV.pdf';
+			cvLink.setAttribute('download', 'Roman_Rai_CV.pdf');
 			cvLink.classList.remove('hidden');
 			cvLink.classList.add('inline-flex');
 		}
