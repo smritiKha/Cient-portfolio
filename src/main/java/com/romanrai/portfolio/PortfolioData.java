@@ -18,7 +18,7 @@ public class PortfolioData {
         public String name = "Roman Rai";
         public String role = "Senior Chef de Partie";
         public String headline = "COOKING WITH PURPOSE";
-        public String about = "My culinary experience spans professional kitchens in India and the UAE, with a focus on sushi preparation, station leadership, consistent execution, and thoughtful service. I value precise technique, strong teamwork, and the discipline required to deliver quality throughout service.";
+        public String about = "My culinary experience spans casual and fine-dining kitchens, with a focus on sushi preparation, station leadership, consistent execution, and thoughtful service. I value precise technique, strong teamwork, and the discipline required to deliver quality throughout service.";
         public String email = "theromanrai@gmail.com";
         public String phone = "0568493578";
         public String location = "Burjuman, Dubai, UAE";
