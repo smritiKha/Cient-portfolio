@@ -175,12 +175,10 @@ async function loadPortfolioContent() {
 			document.getElementById('contact-phone-text').textContent = phone;
 		}
 		const cvLink = document.getElementById('cv-link');
-		if (profile.resumeUrl) {
-			cvLink.href = '/Roman_Rai_CV.pdf';
-			cvLink.setAttribute('download', 'Roman_Rai_CV.pdf');
-			cvLink.classList.remove('hidden');
-			cvLink.classList.add('inline-flex');
-		}
+		cvLink.href = '/cv/download';
+		cvLink.setAttribute('download', 'Roman_Rai_CV.pdf');
+		cvLink.classList.remove('hidden');
+		cvLink.classList.add('inline-flex');
 		document.getElementById('contact-location').textContent =
 			profile.location || '';
 		renderTextList(
