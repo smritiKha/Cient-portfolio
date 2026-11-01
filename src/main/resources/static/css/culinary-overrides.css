@@ -198,3 +198,36 @@
 		transition-duration: 0.01ms !important;
 	}
 }
+
+/* Mobile editorial refinement: readable type, compact hero, prominent career cards. */
+@media (max-width: 767px) {
+  #navbar > div { height: 4.25rem; padding-inline: 1rem; }
+  #navbar .font-serif { font-size: 1rem; }
+  #primary-navigation.mobile-open { top: 4.25rem; }
+  #hero { min-height: auto; padding-top: 4.25rem; }
+  #hero > .max-w-7xl { padding: 2rem 1.25rem 2.5rem; gap: 1.65rem; }
+  #hero > .max-w-7xl > div:first-child { gap: 1rem; }
+  #hero h1 { font-size: clamp(2.25rem, 10vw, 3.5rem); line-height: 1.12; letter-spacing: -.025em; }
+  #hero #profile-about { font-size: 1rem; line-height: 1.7; color: #d1d5db; }
+  #hero #profile-availability { font-size: .75rem; }
+  #hero .flex.flex-wrap a { min-height: 44px; padding: .85rem 1.25rem; font-size: .75rem; }
+  #hero #hero-chef-portrait { object-position: center 28%; }
+  #hero .aspect-\\[4\\/5\\] { max-height: 360px; }
+  #hero #featured-dish { margin-top: 0; }
+  #hero #featured-dish > div { aspect-ratio: 16/10; }
+  #hero #hero-dish-title { font-size: 1.4rem; }
+  #about, #experience, #gallery, #skills, #credentials, #contact { padding-top: 3.5rem; padding-bottom: 3.5rem; }
+  #about .max-w-7xl, #experience .max-w-7xl, #gallery .max-w-7xl { padding-inline: 1.25rem; }
+  #about h2, #experience h2, #gallery h2 { font-size: clamp(1.9rem, 8vw, 2.6rem); line-height: 1.18; }
+  #about p, #experience > div > div:first-child p, #gallery > div > div:first-child p { font-size: 1rem; line-height: 1.75; }
+  #experience .mb-12 { margin-bottom: 1.6rem; }
+  #experience-list { gap: .85rem; }
+  #experience-list article { padding: 1.25rem; gap: .55rem; border-left: 2px solid rgba(212,175,55,.55); }
+  #experience-list article h3 { font-size: 1.2rem; line-height: 1.35; }
+  #experience-list article div p:first-child { font-size: 1rem; line-height: 1.5; font-weight: 600; }
+  #experience-list article div p:nth-child(2) { font-size: .92rem; line-height: 1.65; color: #d1d5db; }
+  #experience-list article > p:last-child { font-size: .82rem; line-height: 1.5; color: #b9bec7; }
+  #dish-gallery-grid { gap: 1rem; }
+  #dish-gallery-grid article p, #dish-gallery-grid .text-xs { line-height: 1.6; }
+  #dish-gallery-grid img { max-width: 100%; }
+}
