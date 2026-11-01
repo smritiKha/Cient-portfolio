@@ -12,23 +12,27 @@ function renderExperience(entries) {
 		container.append(empty);
 		return;
 	}
-	entries.forEach((entry) => {
+	[...entries].sort((a, b) => {
+\t\tconst aCurrent = /present|current/i.test(a.dates || '') ? 1 : 0;
+\t\tconst bCurrent = /present|current/i.test(b.dates || '') ? 1 : 0;
+\t\treturn bCurrent - aCurrent;
+\t}).forEach((entry) => {
 		const article = document.createElement('article');
 		article.className =
 			'glass-panel rounded-2xl border border-white/10 p-5 sm:p-6 grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-6';
 		const venue = document.createElement('h3');
-		venue.className = 'font-serif text-lg text-white';
+		venue.className = 'font-serif text-xl text-white leading-snug';
 		venue.textContent = entry.venue || '';
 		const detail = document.createElement('div');
 		const role = document.createElement('p');
-		role.className = 'text-sm text-gold';
+		role.className = 'text-base font-semibold text-gold';
 		role.textContent = entry.role || '';
 		const contribution = document.createElement('p');
-		contribution.className = 'text-xs text-gray-400 mt-2';
+		contribution.className = 'text-sm leading-relaxed text-gray-300 mt-2';
 		contribution.textContent = entry.details || '';
 		detail.append(role, contribution);
 		const meta = document.createElement('p');
-		meta.className = 'text-xs text-gray-400 md:text-right';
+		meta.className = 'text-sm text-gray-400 md:text-right';
 		meta.textContent = [entry.location, entry.dates]
 			.filter(Boolean)
 			.join(' · ');
