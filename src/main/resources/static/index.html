@@ -291,13 +291,14 @@
 				<!-- Hero Floating Dish Visual Card -->
 				<div id="featured-dish" class="lg:col-span-12 flex justify-center relative mt-4">
 					<div
-						class="relative w-full max-w-3xl aspect-[2/1] rounded-3xl glass-panel flex flex-col items-center justify-center shadow-2xl overflow-hidden group animate-float">
+						class="relative w-full max-w-3xl aspect-[4/3] sm:aspect-[2/1] rounded-3xl glass-panel flex flex-col items-center justify-center shadow-2xl overflow-hidden group lg:animate-float">
 						<div
 							class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent z-10"></div>
 						<!-- Dish Image -->
 						<img
 							id="hero-dish-img"
 							src="/images/sushi_boat.png"
+							loading="lazy" decoding="async"
 							alt="Signature Sushi Boat with assorted sushi rolls"
 							class="absolute inset-0 w-full h-full object-contain bg-black/40" />
 
@@ -1671,7 +1672,7 @@
 				const container = document.getElementById(
 					'hero-canvas-container',
 				);
-				if (container) {
+				if (container && window.matchMedia('(min-width: 1024px)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
 					try {
 						if (!window.THREE)
 							throw new Error('Three.js did not load.');
@@ -1746,6 +1747,7 @@
 						});
 
 						function animateScene() {
+							if (document.hidden) { requestAnimationFrame(animateScene); return; }
 							requestAnimationFrame(animateScene);
 							torus.rotation.x += 0.003;
 							torus.rotation.y += 0.005;
