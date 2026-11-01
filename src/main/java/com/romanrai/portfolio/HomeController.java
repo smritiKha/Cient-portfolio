@@ -15,6 +15,16 @@ public class HomeController {
         return "redirect:/";
     }
 
+    @GetMapping("/cv")
+    public String cv() {
+        return "forward:/cv.html";
+    }
+
+    @GetMapping("/cv.html")
+    public String legacyCvUrl() {
+        return "redirect:/cv";
+    }
+
     @GetMapping("/admin")
     public String admin() {
         return "redirect:/admin/login.html";
